@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Management.Db": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Db__ConnectionString": "Host=localhost;Port=5432;Database=Management-db;Username=postgres;Password=postgres",
+        "RabbitMQ__Uri": "amqp://guest:guest@localhost"
+      }
+    }
+  }
+}

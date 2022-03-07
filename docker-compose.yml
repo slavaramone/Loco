@@ -1,0 +1,193 @@
+version: "3.6"
+
+services:
+  management-db:
+    image: docker.griser.ru/locomotive-management-db:${APP_VERSION:-0.1}
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-management-db
+    depends_on:
+      - postgresdb
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      Db__ConnectionString: "Host=postgresdb;Port=5432;Database=Management-db;Username=postgres;Password=sdtdo7sySn2m8xnY"
+      RabbitMQ__Uri: "amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq"
+    logging:
+      options:
+        max-size: 128m      
+
+  postgresdb:
+    image: postgres:12.4-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: sdtdo7sySn2m8xnY
+      POSTGRES_DB: Tracker-db
+    volumes:
+      - datadir:/var/lib/postgresql/data
+      - /srv/staging/dumps:/var/lib/postgresql/dumps      
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c max_connections=200
+    ports:
+      - 5433:5432
+    logging:
+      options:
+        max-size: 128m
+
+  management-ui:
+    image: docker.griser.ru/locomotive-management-ui:${APP_VERSION:-0.1}
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-management-ui
+    volumes:
+      - /mnt/data/archive-staging:/home/video/arc:rw
+    ports:
+      - 8080:80
+    depends_on:
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      RabbitMQ__Uri: amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq
+      ApiKey: 1234567812345678
+      Video__DownloadLinkUrlFormat: https://video.locomotive.griser.ru/nuc{0}/video/{1}/{2}/{3}
+      Video__VideoArchiveDir: /home/video/arc
+      Video__SearchRegex: (?<dateFrom>\d{8,8})-(?<timeFrom>\d{6,6})[_]*(?<dateTo>\d{8,8})*[-]*(?<timeTo>\d{6,6})*_nuc(?<nucNumber>\d+)_cam(?<camNumber>\d+)_motion
+      Video__FileNoDateAndSizeFormat: _nuc{0}_cam{1}_motion
+      Video__SearchPattern: "*.ts"
+      Video__DurationSeconds: 60
+      Auth__Key: 1234567812345678
+      Auth__Lifetime: 30.01:00:00
+      Notification__LifetimeSeconds: 30
+    logging:
+      options:
+        max-size: 128m      
+      
+  tracker-api:
+    image: docker.griser.ru/locomotive-tracker-api:${APP_VERSION:-0.1}
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-tracker-api
+    ports:
+      - 8082:80
+    depends_on:
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      RabbitMQ__Uri: "amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq"
+      ApiKey: "1234567812345678"
+    logging:
+      options:
+        max-size: 128m      
+
+  tracker-db:
+    image: docker.griser.ru/locomotive-tracker-db:${APP_VERSION:-0.1}
+    build:
+      context: .
+      dockerfile: Dockerfile-tracker-db    
+    restart: always
+    depends_on:
+      - postgresdb
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      Db__ConnectionString: "Host=postgresdb;Port=5432;Database=Tracker-db;Username=postgres;Password=sdtdo7sySn2m8xnY"
+      RabbitMQ__Uri: "amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq"
+      Period__TrackerDataRefreshSeconds: 1
+      Period__ArchiveDataDelaySeconds: 90
+    logging:
+      options:
+        max-size: 128m      
+
+     
+  notification-db:
+    image: docker.griser.ru/locomotive-notification-db:${APP_VERSION:-0.1}
+    build:
+      context: .
+      dockerfile: Dockerfile-notification-db     
+    restart: always
+    depends_on:
+      - postgresdb
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      Db__ConnectionString: "Host=postgresdb;Port=5432;Database=Notification-db;Username=postgres;Password=sdtdo7sySn2m8xnY"
+      RabbitMQ__Uri: "amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq"
+      Warning__BreakMeters: 100
+      Warning__ArrowMeters: 100
+      Warning__SpeedKmPerHour: 40
+    logging:
+      options:
+        max-size: 128m      
+      
+  notification-tcp:
+    image: docker.griser.ru/locomotive-notification-tcp:${APP_VERSION:-0.1}
+    build:
+      context: .
+      dockerfile: Dockerfile-notification-tcp    
+    restart: always
+    depends_on:
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      RabbitMQ__Uri: "amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq"
+      TcpListener__Port: 8082
+    logging:
+      options:
+        max-size: 128m      
+      
+  tracker-tcp:
+    image: docker.griser.ru/locomotive-tracker-tcp:${APP_VERSION:-0.1}
+    build:
+      context: .
+      dockerfile: Dockerfile-tracker-tcp
+ #   ports:
+ #     - 8081:8081
+    depends_on:
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      RabbitMQ__Uri: "amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq"
+    logging:
+      options:
+        max-size: 128m      
+
+  tracker-glosav:
+    image: docker.griser.ru/locomotive-tracker-glosav:${APP_VERSION:-0.1}
+    restart: always
+    depends_on:
+      - rabbitmq
+    environment:
+      TZ: Europe/Moscow
+      RabbitMQ__Uri: "amqp://locomotive:STkHIUGgpxySaxo9ad9VHdh7@rabbitmq"
+      GlosavMonitoring__RequestTimeout: "00:00:10"
+      GlosavMonitoring__ReceiveGlosavDevicesCronExpression: "*/5 * * ? * * *"
+      GlosavMonitoring__ReceiveGlosavFuelCronExpression: "*/10 * * ? * *"
+      GlosavMonitoring__GlosavApiBaseUrl: "http://10.0.10.136:8000/griser/"
+      GlosavMonitoring__FuelTimeIntervalFilter: 00:05:00
+    build:
+      context: .
+      dockerfile: Dockerfile-tracker-glosav
+    logging:
+      options:
+        max-size: 128m      
+      
+  rabbitmq:
+    image: "rabbitmq:3.8.6-management-alpine"
+    restart: always
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "locomotive"
+      RABBITMQ_DEFAULT_PASS: "STkHIUGgpxySaxo9ad9VHdh7"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    logging:
+      options:
+        max-size: 128m      
+
+volumes: 
+  datadir:
+  

@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+	
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>dotnet-Tracker.Glosav-C11B5C0B-11BF-4EDF-8564-58B845AFA45B</UserSecretsId>
+	</PropertyGroup>
+	
+	<ItemGroup>
+	  <Compile Remove="AutofacModule.cs" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="5.2.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="AutoMapper" Version="10.0.0" />
+		<PackageReference Include="MassTransit" Version="7.0.3" />
+		<PackageReference Include="MassTransit.Quartz" Version="7.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.7" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="3.1.7" />
+		<PackageReference Include="NLog" Version="4.7.3" />
+		<PackageReference Include="NLog.Schema" Version="4.7.3" />
+		<PackageReference Include="Quartz" Version="3.1.0" />
+		<PackageReference Include="RestSharp" Version="106.11.4" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\SharedLib\SharedLib.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Content Update="appsettings.json">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="nlog.config">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Include="..\.dockerignore" Link=".dockerignore">
+	    <DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
+	  </None>
+	</ItemGroup>
+	
+	<Import Project="..\loco_contracts\Contracts\Contracts.projitems" Label="Shared" />
+</Project>

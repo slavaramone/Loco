@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Tracker.Db": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Db__ConnectionString": "Host=localhost;Port=5432;Database=Tracker-db;Username=postgres;Password=postgres",
+        "Period__TrackerDataRefreshSeconds": "1",
+        "RabbitMQ__Uri": "amqp://guest:guest@localhost",
+        "Period__ArchiveDataDelaySeconds": "90"
+      }
+    }
+  }
+}

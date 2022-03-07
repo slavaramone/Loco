@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Contracts", "Contracts\Contracts.shproj", "{1B2FC0D2-A86E-4BDB-A82E-2B8F3AA9968B}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Contracts\Contracts.projitems*{1b2fc0d2-a86e-4bdb-a82e-2b8f3aa9968b}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {852483EC-BB3F-405B-97A3-EE6DDC2E358A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>1b2fc0d2-a86e-4bdb-a82e-2b8f3aa9968b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Contracts</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CalibratedFuelLevelContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ChartType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\LocoHistoryType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ScaleType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\UserNotFoundException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FuelLevelContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FuelLevelDataCalibrationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocoChartItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotificationSpeedMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PastTrackersDataMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\AddUserRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\AuthRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\CalibrationRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\CommonFilterContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\SpeedZoneRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\CoordinatesHistoryResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\DeleteUserRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\FuelReportCalibrationRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\LocoCoordReportRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\DateAxisChartRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\LocoHistoryRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\LocoListRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\LocoAndSensorByApiKeyRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\LocoVideoStreamRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\NotificationListRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\SensorFuelReportRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\SensorTrackerIdsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\ShunterListRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\SortFilterContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\StaticObjectListRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\UpdateLocoRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\UpdateUserRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\UserListRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\AddUserResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\CalibrationResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\CoordinatesHistoryResponseItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\DeleteUserResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\FuelHistoryResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\FuelReportCalibrationResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\FuelHistoryResponseItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoCoordReportResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\DateAxisChartResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoAndSensorByApiKeyResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoReportFuelItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\NotificationHistoryResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\NotificationHistoryResponseItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\NotificationMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SensorFuelReportResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoVideoStreamContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoVideoStreamResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SensorTrackerIdsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SpeedZoneResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SpeedZoneResponseItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\StaticObjectListResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\UpdateLocoResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\UpdateUserResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\UserContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\UserListResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\UploadCalibrationRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\AuthResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\NotificationType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ReceiveGlosavDevices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ReceiveGlosavFuel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FuelLevelDataMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoListItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoListResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SensorReportFuelItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SensorContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\SensorGroupContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoReportCoordItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\NotificationListItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\NotificationListResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\ShunterListItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\ShunterListResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\UploadCalibrationResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpeedExceededNotificationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UiFuelLevelDataMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UiTrackerDataMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ReceiveMapItems.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MapItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\InitMapDataRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\InitMapDataResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StaticMapItemContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotificationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\MapItemType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Severity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\TrackerDataType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\UserRole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\MapItemsReceived.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\LocoInfosRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\CameraContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\LocoInfosResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Responses\TrackerDataResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrackerDataMessage.cs" />
+  </ItemGroup>
+</Project>

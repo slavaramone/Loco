@@ -1,0 +1,3 @@
+[submodule "loco_contracts"]
+	path = loco_contracts
+	url = ssh://git@bitbucket-locomotive.griser.ru:7994/loc/loco_contracts.git

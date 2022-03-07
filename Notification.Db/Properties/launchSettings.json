@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Notification.Db": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Db__ConnectionString": "Host=localhost;Port=5432;Database=Notification-db;Username=postgres;Password=postgres",
+        "Warning__ArrowMeters": "100",
+        "RabbitMQ__Uri": "amqp://guest:guest@localhost",
+        "Warning__BreakMeters": "100",
+        "Warning__SpeedKmPerHour": "40"
+      }
+    }
+  }
+}

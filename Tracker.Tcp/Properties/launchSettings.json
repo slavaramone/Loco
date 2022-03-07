@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Tracker.Tcp": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "RabbitMQ__Uri": "amqp://guest:guest@localhost",
+        "TcpListener__Port": "8081"
+      }
+    }
+  }
+}

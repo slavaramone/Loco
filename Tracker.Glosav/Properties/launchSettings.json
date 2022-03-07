@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Tracker.Glosav": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "GlosavMonitoring__RequestTimeout": "00:00:10",
+        "GlosavMonitoring__ReceiveGlosavDevicesCronExpression": "*/5 * * ? * * *",
+        "RabbitMQ__Uri": "amqp://guest:guest@localhost",
+        "GlosavMonitoring__FuelTimeIntervalFilter": "00:05:00",
+        "GlosavMonitoring__GlosavApiBaseUrl": "http://10.0.10.237:8000/griser/",
+        "GlosavMonitoring__ReceiveGlosavFuelCronExpression": "0 * * ? * *"
+      }
+    }
+  }
+}
